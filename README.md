@@ -1104,3 +1104,597 @@ This comprehensive guide covers the networking, content delivery, and migration 
 [18](https://www.w3schools.com/training/aws/aws-datasync-primer.php)
 [19](https://www.datacamp.com/tutorial/aws-datasync)
 [20](https://www.elastic.co/docs/explore-analyze/elastic-inference/inference-api)
+
+
+------
+
+# AWS Security, Identity, Compliance, and Storage for Generative AI Exam Study Notes
+
+This comprehensive guide covers AWS security, identity management, compliance, and storage services critical for protecting and managing generative AI workloads.[1][2][3][4][5][6]
+
+## Security, Identity, and Compliance
+
+### AWS Identity and Access Management (IAM)
+Foundation service for securely controlling access to AWS resources through authentication and authorization.[7][8]
+
+**Core Concepts:**
+- **Users**: Individual people or services with credentials (password, access keys)
+- **Groups**: Collections of users sharing same permissions
+- **Roles**: Temporary credentials assumed by users, services, or applications
+- **Policies**: JSON documents defining permissions (allow/deny actions on resources)
+
+**IAM Policy Structure:**
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": "bedrock:InvokeModel",
+    "Resource": "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-v2",
+    "Condition": {
+      "StringEquals": {"aws:RequestedRegion": "us-east-1"}
+    }
+  }]
+}
+```
+
+**AI/ML IAM Best Practices:**
+- **Least Privilege Principle**: Grant only permissions required for specific tasks[8]
+- Use IAM roles for SageMaker notebooks/training jobs instead of embedding access keys
+- Create service-specific policies: `SageMakerFullAccess`, `BedrockUserPolicy`, `S3ReadOnlyForMLData`
+- Implement resource-based policies to restrict access to specific models or endpoints
+- Use permission boundaries to set maximum permissions for delegated administrators
+
+**Common IAM Policies for AI/ML:**
+- **Data Scientists**: Read S3 training data, execute SageMaker training jobs, deploy models
+- **ML Engineers**: Full SageMaker access, manage model registry, configure endpoints
+- **Application Developers**: Invoke Bedrock APIs, call SageMaker endpoints, read-only access to models
+- **Auditors**: CloudTrail read access, CloudWatch logs access, read-only IAM permissions
+
+**IAM Roles for Services:**
+- SageMaker execution roles: Access S3 buckets, write CloudWatch logs, access KMS keys
+- Lambda execution roles: Invoke Bedrock, call SageMaker endpoints, read Secrets Manager
+- Bedrock service roles: Access S3 for Knowledge Bases, OpenSearch Serverless for vector stores
+
+**Policy Evaluation Logic:**
+1. Explicit Deny → Overrides everything
+2. Explicit Allow → Permitted if no deny exists
+3. Implicit Deny → Default for all actions not explicitly allowed
+
+### IAM Identity Center (AWS SSO)
+Centralized access management for workforce identities across AWS accounts and applications.
+
+**Key Features:**
+- Single sign-on to multiple AWS accounts from unified portal
+- Integration with Microsoft Active Directory, Okta, Azure AD
+- Multi-factor authentication (MFA) enforcement
+- Permission sets defining access levels across accounts
+- Session duration control for temporary credentials
+
+**AI/ML Use Cases:**
+- Centralized access for data science teams across dev/staging/prod accounts
+- Federated access for contractors without creating IAM users
+- Temporary elevated permissions for model deployment approvals
+- Audit trail of user activities across ML platform accounts
+
+### IAM Access Analyzer
+Automated tool identifying resources shared with external entities and validating IAM policies.[7]
+
+**Capabilities:**
+- **External Access Analysis**: Identifies S3 buckets, KMS keys, Lambda functions, SageMaker endpoints accessible from outside your account
+- **Unused Access Analysis**: Detects permissions granted but never used (helps refine least privilege)
+- **Policy Validation**: Checks IAM policies for syntax errors, security warnings, best practice violations
+- **Custom Policy Checks**: Validate policies against organizational security standards
+
+**AI/ML Security Auditing:**
+- Identify publicly accessible S3 buckets containing training data
+- Detect SageMaker endpoints with overly permissive resource policies
+- Find unused Bedrock API permissions in IAM roles
+- Validate custom policies for data science teams comply with security baselines
+
+**Continuous Monitoring:**
+- Automatically analyzes new/updated resource policies
+- Generates findings for each external access path
+- Integrates with EventBridge for automated remediation workflows
+- Archive resolved findings to maintain audit history
+
+### Amazon Cognito
+Managed customer identity and access management (CIAM) service for web/mobile applications.[5][9]
+
+**Core Components:**
+- **User Pools**: User directories providing sign-up, sign-in, account recovery, MFA
+- **Identity Pools**: Provide temporary AWS credentials to authenticated/guest users
+- **Federated Identities**: Integrate social providers (Google, Facebook, Apple), SAML, OIDC[9]
+
+**Authentication Features:**
+- Customizable hosted UI for login/registration pages matching brand identity[5]
+- Passwordless authentication (magic links, WebAuthn)
+- Adaptive authentication with risk-based challenges
+- Token-based authentication (JWT access/ID tokens)
+- Lambda triggers for custom authentication flows
+
+**AI/ML Application Integration:**
+- Authenticate users accessing AI-powered web applications
+- Secure chatbot interfaces with user authentication
+- Provide temporary credentials for client-side Bedrock API calls
+- Multi-tenant AI applications with user isolation[5]
+- Secure Amazon Bedrock AgentCore with Cognito-powered identity[5]
+
+**Identity Pools for AWS Access:**
+- Map authenticated users to IAM roles with specific permissions
+- Guest users receive limited IAM role (e.g., read-only access to public models)
+- Authenticated users receive enhanced role (e.g., invoke personalized AI services)
+- Use enhanced flow for fine-grained access control based on user attributes
+
+**Best Practices:**
+- Enable MFA for administrative users accessing AI platforms
+- Use custom domains for branded authentication experience
+- Implement account takeover protection with adaptive authentication
+- Configure token expiration aligned with security requirements (1 hour for access tokens)
+- Use Cognito groups to map users to different IAM roles based on subscription tier
+
+### AWS Key Management Service (KMS)
+Managed service for creating and controlling cryptographic keys used for data encryption.[10][11][2][1]
+
+**Key Types:**
+- **AWS Managed Keys**: Automatic rotation, managed by AWS (e.g., `aws/s3`, `aws/bedrock`)
+- **Customer Managed Keys (CMK)**: Full control over key policies, rotation, and deletion
+- **AWS Owned Keys**: Used by services, not visible in your account
+
+**Encryption Operations:**
+- Encrypt/Decrypt: Direct encryption of small data (up to 4KB)
+- GenerateDataKey: Creates data encryption key (DEK) for encrypting large datasets
+- GenerateDataKeyWithoutPlaintext: Returns only encrypted DEK
+- ReEncrypt: Change encryption key without accessing plaintext
+
+**AI/ML Encryption Use Cases:**
+- **S3 Training Data**: SSE-KMS encryption for datasets with customer-managed keys[10]
+- **SageMaker Volumes**: Encrypt training instance storage volumes with CMK[10]
+- **SageMaker Output**: Encrypt model artifacts in S3 using specified KMS key[10]
+- **Bedrock Data**: Encrypt fine-tuning jobs, custom models, and knowledge base resources[11][12][1]
+- **Bedrock Imported Models**: Encrypt imported custom models with customer-managed keys[12]
+- **EFS File Systems**: Encrypt shared datasets for distributed training
+- **Secrets Manager**: Encrypt API keys and credentials for external AI services
+
+**KMS Key Policies:**
+Define who can use and manage keys through IAM-style policies attached to keys.
+
+**Example Policy for SageMaker:**
+```json
+{
+  "Sid": "Allow SageMaker to use key",
+  "Effect": "Allow",
+  "Principal": {"Service": "sagemaker.amazonaws.com"},
+  "Action": ["kms:Decrypt", "kms:GenerateDataKey"],
+  "Resource": "*"
+}
+```
+
+**Bedrock KMS Integration:**
+- Default: AWS-owned key (`aws/bedrock`) for data at rest[11]
+- Custom: Customer-managed key for enhanced control over knowledge bases[11]
+- Grants: Bedrock creates grants for encryption operations on imported models[12]
+- Permissions: Grant `kms:DescribeKey`, `kms:GenerateDataKey`, `kms:Decrypt` to Bedrock service role[13][12]
+
+**Key Rotation:**
+- AWS managed keys: Automatic rotation every year
+- Customer managed keys: Optional automatic rotation (365 days)
+- Manual rotation: Create new key version, update references in applications
+
+**Best Practices:**
+- Use customer-managed keys for sensitive AI training data requiring audit trails
+- Enable CloudTrail logging for all KMS API calls
+- Implement key policies restricting decrypt permissions to specific IAM roles
+- Use separate keys for different data classifications (public, internal, confidential)
+- Set up CloudWatch alarms for unusual KMS API activity
+
+### AWS Encryption SDK
+Client-side encryption library for encrypting data before sending to AWS services.
+
+**Key Features:**
+- Envelope encryption: Generates unique data key for each object
+- Multiple master key providers (KMS, raw RSA keys)
+- Authenticated encryption with metadata
+- Automatic key rotation support
+
+**AI/ML Use Cases:**
+- Encrypt training datasets client-side before uploading to S3
+- Protect model predictions containing PII before logging
+- Secure prompt templates with sensitive business logic
+- Encrypt inference payloads in transit between services
+
+### Amazon Macie
+ML-powered service for discovering, classifying, and protecting sensitive data in S3.[3][14]
+
+**Core Capabilities:**
+- **Automated Discovery**: Continuously samples and analyzes S3 objects for sensitive data[3]
+- **Sensitive Data Types**: 150+ built-in detectors (SSN, credit cards, driver's licenses, passport numbers, API keys)[14]
+- **Custom Identifiers**: Define regex patterns for proprietary sensitive data formats
+- **Data Map**: Interactive visualization showing bucket sensitivity scores[3]
+
+**Detection Categories:**
+- Personally Identifiable Information (PII): Names, addresses, phone numbers, email addresses[14]
+- Financial Data: Credit card numbers, bank accounts, tax IDs
+- Credentials: API keys, passwords, AWS secret access keys
+- Health Data: Medical record numbers, drug names, procedure codes
+
+**AI/ML Data Protection:**
+- Scan training datasets for accidental PII inclusion before model training[3]
+- Identify sensitive data in prompt logs and conversation histories
+- Detect API keys or credentials accidentally committed to S3-backed datasets
+- Monitor vector store documents for compliance violations
+- Validate data anonymization processes for GDPR/HIPAA compliance
+
+**Findings and Remediation:**
+- Each finding includes severity level, data sample, bucket/object location[3]
+- Automated export to EventBridge for workflow automation[3]
+- Integration with Security Hub for centralized security posture management
+- Sample excerpts show actual text matching PII patterns for verification[3]
+
+**Sensitive Data Discovery Jobs:**
+- **One-time**: Analyze specific buckets on-demand
+- **Scheduled**: Recurring analysis (daily, weekly, monthly)
+- **Automated**: Continuous sampling of representative objects across account[3]
+
+**Best Practices:**
+- Enable automated discovery for all buckets containing training data
+- Create EventBridge rules triggering Lambda for automatic PII redaction
+- Use custom identifiers for industry-specific sensitive data formats
+- Suppress false positives to reduce alert fatigue
+- Monitor findings dashboard weekly for compliance reporting
+
+### AWS Secrets Manager
+Centrally manage, retrieve, and rotate database credentials, API keys, and other secrets.[15][6]
+
+**Key Features:**
+- Automatic rotation of secrets without application downtime
+- Fine-grained access control via IAM policies
+- Encryption at rest using KMS customer-managed keys[15]
+- Cross-region secret replication for disaster recovery
+- Audit logging via CloudTrail
+
+**AI/ML Secrets Management:**
+- Store third-party AI service API keys (OpenAI, Anthropic, Cohere)
+- Manage database credentials for vector stores (OpenSearch, Pinecone, Weaviate)
+- Rotate SageMaker endpoint authentication tokens
+- Store OAuth tokens for accessing external data sources in RAG applications
+- Manage encryption keys for custom model artifacts
+
+**Secret Types:**
+- Database credentials with automatic rotation (RDS, Aurora, Redshift, DocumentDB)
+- API keys as plaintext or JSON key-value pairs
+- OAuth tokens with refresh capabilities
+- SSH keys and certificates
+
+**Programmatic Access:**
+```python
+import boto3
+client = boto3.client('secretsmanager')
+response = client.get_secret_value(SecretId='prod/bedrock/api-key')
+api_key = response['SecretString']
+```
+
+**Rotation Strategies:**
+- Single user: Rotate password in-place (brief unavailability)
+- Alternating users: Switch between two users (zero downtime)
+- Lambda functions execute rotation logic automatically
+
+**Best Practices:**
+- Never hardcode API keys in application code or environment variables
+- Use IAM policies to restrict secret access to specific roles/services
+- Enable automatic rotation for long-lived credentials (30-90 days)
+- Use resource-based policies for cross-account secret access
+- Tag secrets by environment, application, or sensitivity level for governance
+
+### AWS WAF (Web Application Firewall)
+Protects web applications and APIs from common exploits and bots.
+
+**Core Features:**
+- Managed rule groups for OWASP Top 10 protection
+- Rate-based rules limiting requests from single IP
+- Geo-blocking restricting access by country
+- IP reputation lists blocking known malicious IPs
+- Custom rules using conditions (headers, query strings, request body)
+
+**AI/ML API Protection:**
+- Protect API Gateway endpoints fronting SageMaker/Bedrock with rate limits
+- Block prompt injection attacks using custom regex patterns
+- Prevent scraping of AI-generated content with bot detection
+- Implement IP whitelisting for sensitive model inference endpoints
+- Rate limit per API key to prevent quota exhaustion
+
+**Rule Types:**
+- **Managed Rules**: AWS and third-party pre-configured rule sets (SQLi, XSS, bad bots)
+- **Custom Rules**: User-defined conditions matching specific attack patterns
+- **Rate-Based Rules**: Block IPs exceeding request threshold (e.g., 2000 requests/5 minutes)
+
+**Integration Points:**
+- CloudFront distributions serving AI application UIs
+- Application Load Balancers fronting inference endpoints
+- API Gateway REST/HTTP APIs for model serving
+- AppSync GraphQL APIs for AI-powered applications
+
+**Monitoring:**
+- CloudWatch metrics: Allowed/blocked requests, rule matches
+- Sampled web requests for analysis and tuning
+- WAF logs to S3/CloudWatch Logs for forensics
+- Integration with Firewall Manager for centralized management
+
+## Storage Services
+
+### Amazon S3 (Simple Storage Service)
+Scalable object storage service forming the foundation of AI/ML data infrastructure.[16]
+
+**Core Concepts:**
+- **Buckets**: Containers for objects (globally unique names)
+- **Objects**: Files with metadata (up to 5TB per object)
+- **Keys**: Unique identifiers within bucket (acts as filename)
+- **Versioning**: Preserve multiple variants of objects
+- **Regions**: Physical location for data residency and latency optimization
+
+**Storage Classes:**
+- **S3 Standard**: Frequent access, low latency (training data, active models)
+- **S3 Intelligent-Tiering**: Automatic cost optimization based on access patterns
+- **S3 Standard-IA**: Infrequent access, lower storage cost (archived datasets)
+- **S3 One Zone-IA**: Single AZ, lower cost (reproducible data)
+- **S3 Glacier Instant Retrieval**: Archive with millisecond retrieval
+- **S3 Glacier Flexible Retrieval**: Archive with minutes-hours retrieval
+- **S3 Glacier Deep Archive**: Lowest cost, 12-hour retrieval (compliance archives)
+
+**AI/ML S3 Use Cases:**
+- **Training Data Lakes**: Centralized repository for raw and processed datasets[16]
+- **Model Artifacts**: Store trained models, checkpoints, experiment outputs
+- **Feature Stores**: Version-controlled feature datasets for consistency
+- **Data Versioning**: Track dataset lineage through S3 versioning[16]
+- **Batch Inference**: Store input data and prediction outputs
+- **Immutable Storage**: S3 Object Lock prevents data tampering in training datasets[16]
+
+**S3 Security Features:**
+- **Bucket Policies**: Resource-based access control for cross-account sharing
+- **Access Control Lists (ACLs)**: Legacy permission model (prefer bucket policies)
+- **Encryption**: SSE-S3 (managed keys), SSE-KMS (customer-managed keys), SSE-C (customer-provided keys)
+- **Block Public Access**: Account/bucket-level controls preventing accidental exposure
+- **Object Lock**: WORM (Write Once Read Many) compliance mode for regulatory requirements[16]
+- **VPC Endpoints**: Private connectivity without internet gateway
+
+**S3 Performance Optimization:**
+- Request rate: 3500 PUT/COPY/POST/DELETE, 5500 GET/HEAD per prefix per second
+- Multipart upload for objects >100MB (up to 5GB parts)
+- Transfer Acceleration: Use CloudFront edge locations for faster uploads
+- S3 Select: Query subset of data without retrieving entire object (reduce egress)
+
+**Best Practices:**
+- Use versioning for critical training datasets to enable rollback[16]
+- Enable MFA Delete for protecting against accidental deletion
+- Implement least privilege bucket policies restricting access by IAM role
+- Use S3 Inventory for tracking objects and metadata at scale
+- Enable server access logging for audit compliance
+
+### Amazon S3 Intelligent-Tiering
+Storage class automatically optimizing costs by moving objects between access tiers.[17]
+
+**Automatic Tiering:**
+- **Frequent Access**: Objects accessed within 30 days (Standard pricing)
+- **Infrequent Access**: Objects not accessed for 30 days (40% savings)
+- **Archive Instant Access**: Objects not accessed for 90 days (68% savings)
+- **Archive Access** (optional): Objects not accessed for 90-730 days (71% savings)
+- **Deep Archive Access** (optional): Objects not accessed for 180-730 days (95% savings)
+
+**AI/ML Use Cases:**
+- Experimental datasets with unpredictable access patterns
+- Training datasets transitioning from active to archived[17]
+- Model artifacts accessed occasionally for comparison
+- RAG document stores with varying query frequencies
+
+**Configuration:**
+- No retrieval fees (unlike Standard-IA)
+- Small monthly monitoring/automation fee per object
+- Minimum object size: 128KB (smaller objects charged as 128KB)
+- Minimum storage duration: No minimum
+- Enable Archive tiers through S3 Lifecycle configuration
+
+**Best Practices:**
+- Use for objects >128KB with unknown access patterns
+- Combine with Lifecycle policies for automatic cleanup
+- Align with sustainability goals by minimizing storage footprint[17]
+
+### Amazon S3 Lifecycle Policies
+Automate transition and expiration actions for objects based on age or criteria.[4][18][19][17]
+
+**Transition Actions:**
+- Move objects to cheaper storage classes after specified days
+- Example: Standard → Standard-IA (30 days) → Glacier (90 days) → Deep Archive (365 days)
+
+**Expiration Actions:**
+- Permanently delete objects after specified days[18][19]
+- Delete incomplete multipart uploads (reduce storage costs)
+- Delete expired object delete markers (clean up versioned buckets)
+
+**AI/ML Lifecycle Strategies:**
+- **Training Data**: Transition to Glacier after model training completes (90 days)[20][17]
+- **Model Artifacts**: Archive old model versions to Deep Archive (1 year retention)
+- **Inference Logs**: Delete after retention period (30-90 days based on compliance)[19][20]
+- **Temporary Datasets**: Expire intermediate processing files (7 days)
+- **Feature Store**: Archive historical feature sets to Standard-IA (180 days)
+
+**Rule Configuration:**
+- **Scope**: Apply to entire bucket, prefix, or object tags
+- **Filters**: Combine prefix and tag filters for precise targeting
+- **Versioning Support**: Separate rules for current vs non-current versions
+
+**Example Lifecycle Policy:**
+```json
+{
+  "Rules": [{
+    "Id": "ArchiveTrainingData",
+    "Filter": {"Prefix": "training-data/"},
+    "Status": "Enabled",
+    "Transitions": [
+      {"Days": 90, "StorageClass": "GLACIER"},
+      {"Days": 365, "StorageClass": "DEEP_ARCHIVE"}
+    ],
+    "Expiration": {"Days": 2555}
+  }]
+}
+```
+
+**Best Practices:**
+- Align lifecycle policies with data classification and retention requirements[20][17]
+- Test policies on small prefixes before applying broadly[19]
+- Monitor S3 Storage Lens metrics to validate cost savings
+- Enable versioning with NoncurrentVersionExpiration for automatic cleanup[19]
+- Document retention policies for compliance audits[20][19]
+
+### Amazon S3 Cross-Region Replication (CRR)
+Automatically replicate objects across AWS regions for disaster recovery and compliance.
+
+**Key Features:**
+- Asynchronous replication (typically <15 minutes)
+- Replicates new objects and optionally existing objects
+- Preserves metadata, ACLs, and object tags
+- Supports different storage classes in destination
+- Bidirectional replication available
+
+**AI/ML Use Cases:**
+- **Disaster Recovery**: Replicate training datasets to secondary region for business continuity
+- **Global Data Distribution**: Distribute datasets to regions closer to distributed training clusters
+- **Compliance**: Meet data residency requirements by replicating to specific regions
+- **Low-Latency Access**: Serve inference requests from region-local model artifacts
+- **Cross-Account Replication**: Share datasets between dev and prod accounts in different regions
+
+**Replication Configuration:**
+- Source bucket: Enable versioning (required)
+- IAM role: Grant S3 replication permissions
+- Destination bucket: Configure bucket policy allowing source account to replicate
+- Optional: Replication Time Control (RTC) for 99.99% replication within 15 minutes (SLA)
+
+**Selective Replication:**
+- Filter by prefix: Replicate only `training-data/*` objects
+- Filter by tags: Replicate objects tagged `Replicate=true`
+- Delete marker replication: Optional replication of object deletions
+
+**Best Practices:**
+- Enable S3 Batch Replication for existing objects when creating new replication rule
+- Use CRR with Lifecycle policies to transition replicas to cheaper storage
+- Monitor replication metrics in CloudWatch (BytesPendingReplication, ReplicationLatency)
+- Consider bandwidth costs between regions in cost calculations
+
+### Amazon Elastic Block Store (EBS)
+Block storage volumes for EC2 instances, providing persistent storage.
+
+**Volume Types:**
+- **gp3/gp2 (General Purpose SSD)**: Balanced price/performance for training jobs
+- **io2/io1 (Provisioned IOPS SSD)**: High-performance for I/O intensive workloads
+- **st1 (Throughput Optimized HDD)**: Low-cost for sequential access (large datasets)
+- **sc1 (Cold HDD)**: Lowest cost for infrequent access
+
+**AI/ML Use Cases:**
+- **SageMaker Training**: Attach EBS volumes to training instances for local dataset caching
+- **Notebook Instances**: Persistent storage for Jupyter notebooks and experiment code
+- **Custom Inference**: EBS volumes for EC2-based custom model serving
+- **Data Processing**: Temporary storage for ETL pipelines transforming training data
+
+**EBS Snapshots:**
+- Incremental backups stored in S3
+- Cross-region snapshot copy for disaster recovery
+- Restore snapshots to new volumes in any AZ
+- Use snapshots to replicate training environments across regions
+
+**Encryption:**
+- Enable encryption at volume creation (cannot add later)
+- Uses KMS customer-managed keys for encryption
+- Snapshots of encrypted volumes are automatically encrypted
+- Minimal performance impact
+
+**Best Practices:**
+- Use gp3 for cost-effective training instance storage (cheaper than gp2)
+- Enable encryption for volumes containing sensitive data
+- Take snapshots before major model training runs for rollback capability
+- Delete unused volumes and snapshots to reduce costs
+
+### Amazon Elastic File System (EFS)
+Fully managed, elastic NFS file system for shared access across multiple instances.
+
+**Key Features:**
+- Scalable storage growing/shrinking automatically
+- Concurrent access from thousands of EC2 instances
+- Regional service with multi-AZ redundancy
+- POSIX-compliant file system semantics
+
+**Storage Classes:**
+- **EFS Standard**: Frequent access, multi-AZ redundancy
+- **EFS Standard-IA**: Infrequent access, 92% cost savings
+- **EFS One Zone**: Single AZ, 47% cost savings
+- Lifecycle management automatically moves files to IA based on access patterns
+
+**AI/ML Use Cases:**
+- **Shared Training Data**: Multiple SageMaker training jobs accessing same datasets simultaneously
+- **Distributed Training**: Shared file system for PyTorch DistributedDataParallel workloads
+- **Team Collaboration**: Shared workspace for data scientists accessing common datasets
+- **Model Registry**: Centralized storage for model checkpoints accessible by all team members
+- **Notebook Persistence**: Shared storage for JupyterHub environments
+
+**Performance Modes:**
+- **General Purpose**: Default, low latency (default for most ML workloads)
+- **Max I/O**: Higher throughput, slightly higher latency (large-scale distributed training)
+
+**Throughput Modes:**
+- **Bursting**: Throughput scales with file system size
+- **Provisioned**: Specify required throughput independent of size (high-throughput training)
+- **Elastic**: Automatically scales throughput up/down based on workload
+
+**Best Practices:**
+- Use EFS for shared training datasets accessed by multiple concurrent jobs
+- Enable encryption at rest and in transit for compliance
+- Configure lifecycle management to automatically move unused data to IA
+- Use EFS Access Points for application-specific access controls
+- Monitor CloudWatch metrics (ThroughputUtilization, PercentIOLimit) for performance tuning
+
+## Exam Preparation Focus Areas
+
+**Identity and Access:**
+- Master least privilege IAM policy creation for AI/ML roles[8][7]
+- Understand IAM role assumption for SageMaker, Lambda, Bedrock service integration
+- Configure Cognito for authenticating users in AI applications[9][5]
+- Use IAM Access Analyzer to identify overly permissive policies
+
+**Data Protection:**
+- Implement KMS encryption for training data, model artifacts, and Bedrock resources[2][1][11][10]
+- Use Macie to detect PII in training datasets before model training[14][3]
+- Store API keys and credentials in Secrets Manager with automatic rotation[6][15]
+- Apply S3 encryption, versioning, and Object Lock for data integrity[16]
+
+**Storage Optimization:**
+- Design S3 Lifecycle policies aligning with data retention requirements[4][20][17]
+- Use S3 Intelligent-Tiering for datasets with unpredictable access patterns[17]
+- Configure S3 Cross-Region Replication for disaster recovery
+- Choose appropriate EBS volume types for training workload performance
+
+**Security Monitoring:**
+- Enable CloudTrail logging for all IAM, KMS, S3 API calls
+- Configure AWS WAF protecting API Gateway endpoints from malicious traffic
+- Use IAM Access Analyzer for continuous external access monitoring
+- Implement Macie automated discovery for ongoing sensitive data detection[3]
+
+This comprehensive guide covers the security, identity, compliance, and storage services essential for building secure, compliant, and cost-optimized generative AI architectures on AWS.[1][2][6][4][17][5][16][3]
+
+[1](https://docs.aws.amazon.com/bedrock/latest/userguide/data-encryption.html)
+[2](https://www.cloudoptimo.com/blog/amazon-bedrock-vs-amazon-sagemaker-a-comprehensive-comparison/)
+[3](https://cloudchipr.com/blog/amazon-macie)
+[4](https://www.cloudoptimo.com/blog/s3-lifecycle-policies-optimizing-cloud-storage-in-aws/)
+[5](https://aws.amazon.com/cognito/)
+[6](https://aws.amazon.com/secrets-manager/)
+[7](https://mojoauth.com/ciam-101/generative-ai-for-iam)
+[8](https://www.forcepoint.com/blog/insights/generative-ai-security-best-practices)
+[9](https://www.cloudthat.com/resources/blog/federated-authentication-in-modern-apps-with-amazon-cognito/)
+[10](https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-kms-permissions.html)
+[11](https://docs.aws.amazon.com/bedrock/latest/userguide/encryption-kb.html)
+[12](https://docs.aws.amazon.com/bedrock/latest/userguide/encryption-import-model.html)
+[13](https://docs.aws.amazon.com/sagemaker-unified-studio/latest/adminguide/amazon-bedrock-key-permissions.html)
+[14](https://www.youtube.com/watch?v=Js08sHGpxtI)
+[15](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html)
+[16](https://stonefly.com/blog/s3-object-storage-the-ultimate-solution-for-ai-ml-data-lakes/)
+[17](https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/mlsus-05.html)
+[18](https://www.geeksforgeeks.org/cloud-computing/amazon-s3-lifecycle-management/)
+[19](https://www.gradientcyber.com/resources/mastering-data-retention-security-amazon-s3-object-lifecycle-mgmt)
+[20](https://docs.aws.amazon.com/wellarchitected/latest/analytics-lens/best-practice-3.7---implement-data-retention-policies-for-each-class-of-data-in-the-analytics-workload..html)
