@@ -166,6 +166,96 @@ Runs data processing and model evaluation workloads at scale.[3]
 - Batch preprocessing for inference pipelines
 - Supports scikit-learn, pandas, custom Docker containers
 
+For the **AWS Certified AI Practitioner (AIF-C01)** exam, understanding these three SageMaker services requires knowing not just definitions but **when to use each one** in ML workflows and how they fit into the bigger MLOps picture.
+
+## 1. Amazon SageMaker Autopilot
+
+SageMaker Autopilot is AWS's **AutoML (Automated Machine Learning)** solution that automatically builds, trains, and tunes machine learning models while maintaining full transparency and control.[1][2]
+
+### **Use Cases**
+- **Non-experts building models:** Business analysts or developers with limited ML expertise who need high-quality models quickly.[4][6]
+- **Baseline model generation:** Data scientists wanting a strong starting point before manual refinement.[5]
+- **Common prediction tasks:** Price predictions (stocks, real estate), churn prediction (customer retention), risk assessment (loan defaults, fraud), and time series forecasting (demand, sales).[1]
+
+### **How It Works**
+- **Input:** You provide a tabular dataset (CSV/Parquet in S3), specify the target column, and optionally define constraints like problem type or runtime limits.[7]
+- **Automated workflow:** Autopilot automatically:
+  - Analyzes and preprocesses data (handles missing values, encodes categorical features, extracts date/time features).[6][1]
+  - Tests hundreds of model candidates using different algorithms (linear models, XGBoost, deep learning) and hyperparameter configurations.[6][1]
+  - Ranks all candidates on a **leaderboard** by performance metrics, allowing you to select the best model.[7][1]
+- **Transparency:** Generates **Jupyter notebooks** showing exactly how each model was built, so you can inspect, modify, and recreate the pipeline.[1][6]
+- **Deployment:** Deploy the chosen model to a real-time endpoint with one click.[5][1]
+
+### **Exam Key Facts**
+- **Problem types supported:** Binary classification, multi-class classification, regression, and time series forecasting (automatically inferred or manually specified).[2][1]
+- **Customization:** You can apply custom data transformations (300+ prebuilt options), define custom data splits, and choose between ensemble training or hyperparameter optimization modes.[1]
+- **Explainability:** Automatically generates **feature importance reports** and **model performance reports** (confusion matrices, ROC curves, precision-recall curves) to satisfy governance and compliance requirements.[2]
+- **Differentiation:** Autopilot automates **model selection and tuning** for a single ML problem; it is *not* an orchestration tool for multi-step workflows (that's Pipelines).
+
+## 2. Amazon SageMaker Feature Store
+
+SageMaker Feature Store is a **centralized, purpose-built repository for ML features** that enables feature reuse, consistency, and governance across training and inference.[11]
+
+### **Use Cases**
+- **Feature reuse across teams/models:** Multiple teams building models that share common features (e.g., "customer lifetime value," "30-day transaction count") want a single source of truth instead of duplicating feature engineering code.
+- **Eliminating training-serving skew:** Ensuring identical feature definitions and values during both model training (offline) and real-time prediction (online).
+- **Feature discovery and lineage:** Data scientists searching for existing features to avoid redundant work and tracking feature provenance for compliance.
+
+### **How It Works**
+- **Feature Groups:** You define a feature group (schema with feature names, types, and metadata), then ingest records containing:
+  - **Entity ID** (e.g., `customer_id`, `product_id`)
+  - **Event time** (timestamp)
+  - **Feature values** (e.g., `age`, `total_purchases`)
+- **Dual-mode storage:**
+  - **Offline Store:** S3-based, optimized for batch analytics, training data generation, and historical queries (milliseconds-to-seconds latency).
+  - **Online Store:** Low-latency key-value store for real-time inference (single-digit millisecond retrieval).
+- **Point-in-time queries:** Retrieve feature values as they existed at a specific timestamp, preventing data leakage during training (e.g., "what was this customer's 30-day spend on January 1, 2023?").
+- **Integration:** Works seamlessly with SageMaker Pipelines, Data Wrangler, Processing Jobs, and Model Registry to automate feature computation and materialization.
+
+### **Exam Key Facts**
+- **Single source of truth:** Feature Store is the authoritative repository for ML features, distinct from general data lakes (S3) or databases (RDS/DynamoDB).
+- **Consistency guarantee:** Writing to a feature group updates both offline and online stores (if configured), ensuring training and inference use identical feature definitions.
+- **Governance:** Built-in versioning, lineage tracking, and access control (IAM) for compliance and auditability.
+- **When to choose it:** If a question mentions "feature reuse," "consistent features across models," "online + offline feature access," or "reducing training-serving skew," Feature Store is the answer.
+
+## 3. SageMaker Pipelines
+
+SageMaker Pipelines is a **managed MLOps/CI-CD orchestration service** for building, automating, and tracking end-to-end ML workflows as repeatable pipelines.[11]
+
+### **Use Cases**
+- **Automating ML workflows:** Orchestrating multi-step processes like data validation → preprocessing → training → evaluation → model registration → deployment.
+- **Continuous training/retraining:** Automatically retraining models on a schedule (daily, weekly) with new data and promoting them only if they outperform the baseline.
+- **MLOps and governance:** Ensuring reproducibility, version control, and lineage tracking (which data, code, and parameters produced which model).
+- **Conditional logic:** Implementing approval gates (e.g., "only deploy if accuracy > 90%") or A/B testing workflows.
+
+### **How It Works**
+- **Pipeline definition:** You define a pipeline in Python as a **directed acyclic graph (DAG)** of steps:
+  - **ProcessingStep:** Data preprocessing or feature engineering (using SageMaker Processing or custom scripts).
+  - **TrainingStep:** Model training (supports built-in algorithms, custom frameworks, or Autopilot jobs).
+  - **ConditionStep:** Conditional branching based on metrics (e.g., "if validation accuracy > threshold, register model").
+  - **RegisterModelStep:** Register the model in SageMaker Model Registry with metadata.
+  - **TransformStep:** Batch inference.
+  - **LambdaStep / CallbackStep:** Custom logic via AWS Lambda or external callbacks.
+- **Execution and lineage:** Each pipeline run creates an **execution** with full lineage: inputs (data, code, hyperparameters), outputs (models, metrics), and intermediate artifacts are tracked and versioned.
+- **Integration:** Pipelines can read from Feature Store, write models to Model Registry, and trigger deployments to SageMaker Endpoints or batch transform jobs.
+
+### **Exam Key Facts**
+- **MLOps automation:** If a scenario mentions "automating the ML lifecycle," "CI/CD for ML," "reproducible workflows," or "tracking model lineage," SageMaker Pipelines is the correct choice.
+- **Step types:** Know the common steps (Processing, Training, Condition, Register, Transform) and when to use each.
+- **Parameterization:** Pipelines support parameters (e.g., `training_instance_type`, `evaluation_threshold`) for flexibility across runs without code changes.
+- **Differentiation from Autopilot:**
+  - **Autopilot** = Automated **model building** (algorithm selection, tuning) for a single problem.
+  - **Pipelines** = Orchestrating the **entire workflow** (can include Autopilot jobs, feature engineering, deployment, monitoring).
+- **Comparison to other services:** AWS Step Functions orchestrates general workflows; SageMaker Pipelines is ML-specific with native integrations (Training, Feature Store, Model Registry).
+
+### Summary Comparison Table
+
+| Service | Type | Key Keyword / Differentiator |
+|:---|:---|:---|
+| **SageMaker Autopilot** | AutoML | Automatic model selection, tuning, leaderboard; for users needing quick, high-quality models with transparency. [1][2] |
+| **SageMaker Feature Store** | Feature Repository | Centralized feature storage; online + offline stores; eliminates training-serving skew; feature reuse. |
+| **SageMaker Pipelines** | MLOps Orchestration | End-to-end workflow automation (DAG); reproducibility, lineage tracking, CI/CD for ML. |
+
 ## Document AI and NLP Services
 
 ### Amazon Comprehend
