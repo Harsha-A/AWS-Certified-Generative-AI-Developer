@@ -3487,3 +3487,81 @@ The option that says: Payment card industry data security standard (PCI-DSS) is 
 
 The option that says: Health Insurance Portability and Accountability Act (HIPAA) is incorrect because it only addresses the protection of health information and patient privacy in healthcare settings. While important for healthcare data, HIPAA does not encompass the broader scope of security and compliance requirements necessary for managing sensitive federal research data within a research institution.
 
+
+---------------
+
+<img width="817" height="889" alt="image" src="https://github.com/user-attachments/assets/4ecc949a-62b2-4ebf-8d4e-627ed53cd33c" />
+
+
+Secure data engineering practices are essential for ensuring the safety and reliability of AI and generative AI systems. The following are some best practices to consider.
+
+Assessing Data Quality: Data quality assessment is the process of evaluating the fitness, accuracy, completeness, consistency, and reliability of data used for training and deploying AI/ML models. It involves identifying and mitigating potential issues such as biases, errors, inconsistencies, and missing values in the data.
+
+Implementing Privacy-Enhancing Technologies: Privacy-enhancing technologies are a set of techniques and tools designed to protect personal data and individual privacy while allowing data to be used for legitimate purposes, such as training AI/ML models. Examples of PETs include data anonymization, pseudonymization, encryption, tokenization, differential privacy, and secure multi-party computation.
+
+Data Access Control: Data access control refers to the mechanisms and policies that govern who can access, modify, or delete data used in AI/ML systems. It involves implementing role-based access controls, authentication, and authorization measures to ensure that only authorized individuals or services can access sensitive data.
+
+Data Integrity: Data integrity refers to the accuracy, completeness, and consistency of data throughout its lifecycle, from ingestion to processing, storage, and analysis. It involves implementing measures to protect data from unauthorized modifications, accidental or malicious corruption, and ensuring that data remains trustworthy and reliable for AI/ML applications.
+
+Role-based access controls restrict data access to only authorized personnel, preventing unauthorized individuals or systems from accessing or modifying the sensitive training data. By implementing granular access controls based on roles and responsibilities, the data science team can ensure that the valuable image dataset is protected from accidental or malicious data breaches or misuse.
+
+Complementing access controls, cryptographic hashing techniques like SHA-256 or MD5 provide a way to verify the authenticity and integrity of the training data. By generating unique hash values for the dataset, the team can detect any unauthorized modifications or tampering attempts. If the hash values change unexpectedly, it indicates that the data has been altered, allowing the team to take appropriate actions to investigate and mitigate potential security incidents.
+
+Hence, the correct answers are:
+
+– Implement role-based access controls to restrict data access to authorized personnel only.
+
+– Use cryptographic hashing techniques to verify the authenticity of the data.
+
+--------------
+
+The Open Web Application Security Project (OWASP) is a well-known nonprofit organization focused on improving software security. They provide resources, including the OWASP Top 10, which outlines the most critical security vulnerabilities that could affect software applications, including generative AI models.
+
+<img width="1025" height="803" alt="image" src="https://github.com/user-attachments/assets/9d4d8280-0146-41c2-97a0-a0910d5f2ea3" />
+
+
+---------------
+
+Amazon Macie uses machine learning to automatically discover sensitive data within your S3 buckets. It scans objects and identifies patterns that match common types of sensitive information, such as personally identifiable information (PII), credit card numbers, and intellectual property.
+
+Macie classifies the discovered data based on predefined categories (e.g., PII, financial data, health records). It assigns labels to objects, making it easier to manage and apply access controls.
+
+<img width="1856" height="872" alt="image" src="https://github.com/user-attachments/assets/e44edcc0-88c5-4122-bf03-954195d50d08" />
+
+Macie helps protect sensitive data by monitoring access patterns, detecting anomalies, and alerting you to potential security risks. It also integrates with AWS Identity and Access Management (IAM) policies to enforce access controls.
+
+In the given scenario, where sensitive data protection is crucial, Amazon Macie provides the necessary features for compliance, data privacy, and risk mitigation.
+
+Hence, the correct answer is: Amazon Macie.
+
+The option that says: Amazon GuardDuty is incorrect. Amazon GuardDuty analyzes event logs (e.g., CloudTrail, VPC Flow Logs) to detect suspicious activities, unauthorized access, and potential security threats. It focuses on identifying malicious behavior rather than data classification.
+
+The option that says: Amazon Inspector is incorrect because it only assesses the security posture of EC2 instances, Lambda functions and ECR images. It identifies vulnerabilities, security issues, and potential misconfiguration.
+
+Amazon Inspector is incorrect because it is primarily designed as a security assessment service that helps identify vulnerabilities in applications and instances. It does not specifically track API activity or provide auditing capabilities like CloudTrail does.
+
+AWS Trusted Advisor is incorrect because it only provides recommendations to help optimize AWS resources for cost, performance, security, fault tolerance, and service quotas. It does not record, monitor, or audit API calls made to AWS services. AWS CloudTrail should be used instead to track and review API activity.
+
+AWS Config is incorrect. AWS Config provides a detailed view of AWS resources and their configurations. It helps with compliance and governance by recording changes to resource configurations. However, it does not directly audit API activity as CloudTrail does.
+
+ 
+
+-----------------
+
+Amazon SageMaker Model Cards assist in managing and documenting the lifecycle of your machine-learning models. This Amazon SageMaker feature enables you to create and store model cards containing crucial details about your models, such as training data, performance metrics, and intended use cases. By consolidating this information, SageMaker Model Cards offer a structured and standardized method for documenting model development, simplifying the sharing and review of model information across teams. This documentation is valuable for ensuring compliance with industry regulations and transparency in your AI workflows.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/17bf8529-385c-436f-b6f6-b78d9ab2370e" />
+
+In addition to capturing model-specific details, SageMaker Model Cards support collaboration and auditability by enabling stakeholders to easily access and review model documentation. This feature can be crucial for companies in regulated industries requiring thorough compliance audit documentation. By using SageMaker Model Cards, organizations can streamline the process of documenting AI models and ensure that all relevant information is readily available for internal and external review.
+
+----------------
+
+A VPC Gateway Endpoint is a highly available and scalable AWS service that allows you to privately connect your Amazon Virtual Private Cloud (VPC) to supported AWS services, including Amazon S3 and Amazon SageMaker, without the need for an internet gateway, NAT device, or VPN connection.
+
+<img width="1048" height="824" alt="image" src="https://github.com/user-attachments/assets/94313919-8cd8-49ae-9941-14b6d0f490b8" />
+
+By using a VPC Gateway Endpoint, the data transfer between Amazon S3 and Amazon SageMaker instances within the same AWS Region occurs entirely within the AWS network, ensuring that the data does not leave the AWS network and adheres to the compliance requirements.
+
+
+
+
