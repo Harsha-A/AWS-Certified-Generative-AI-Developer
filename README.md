@@ -70,7 +70,7 @@ Critical skill for maximizing model accuracy and relevance.[3]
 - **Chain-of-thought**: Include reasoning steps in prompts for complex tasks
 - Context optimization: Include relevant background information for domain-specific queries
 
-## Amazon SageMaker Ecosystem
+## Amazon SageMaker Ecosystem - https://tutorialsdojo.com/amazon-sagemaker/
 
 ### Amazon SageMaker AI
 Comprehensive, fully managed service for the entire ML lifecycle from data prep to model monitoring.[3]
@@ -3563,5 +3563,136 @@ A VPC Gateway Endpoint is a highly available and scalable AWS service that allow
 By using a VPC Gateway Endpoint, the data transfer between Amazon S3 and Amazon SageMaker instances within the same AWS Region occurs entirely within the AWS network, ensuring that the data does not leave the AWS network and adheres to the compliance requirements.
 
 
+----------------
+
+Large language models (LLMs) are extensive deep learning models pre-trained on massive datasets. They utilize a transformer architecture, which includes neural networks composed of an encoder and a decoder with self-attention mechanisms. These components work together to derive meaning from text sequences and comprehend the relationships between words and phrases.
+
+Stable Diffusion is a generative AI model that creates distinctive photorealistic images based on text and image prompts.
+
+Multimodal models are AI systems that can process and generate content across multiple modalities, such as text, images, and audio. These models are designed to understand and integrate information from diverse data types, enabling more comprehensive and contextually rich outputs.
+
+Researchers introduced the term “foundation model” to describe machine learning models that are trained on a diverse range of generalized and unlabeled data. These models are capable of performing a wide array of tasks, including language comprehension, text and image generation, and natural language conversation.
+
+<img width="1057" height="345" alt="image" src="https://github.com/user-attachments/assets/63a26189-b020-41d5-83e0-1c20c02276c8" />
+
+
+Hence, the correct answers are:
+
+– The company needs a model that can generate detailed and contextually accurate technical documentation based on sparse input data: Large language model.
+
+– The design team wants to create photorealistic images from abstract concepts described in text, ensuring high fidelity and detail: Stable Diffusion model.
+
+– The company requires a model that can simultaneously analyze and generate content involving text, images, and audio for an immersive virtual assistant: Multimodal model.
+
+– The company needs a robust and adaptable model that can be fine-tuned for a wide range of tasks, including natural language understanding, image recognition, and predictive analytics: Foundation model.
+
+-----------------------
+
+Prompt engineering is the process of designing and crafting prompts (input text) to guide language models to generate desired outputs. Some of the Prompt Engineering Techniques are:
+
+Few-shot prompting is a technique that involves providing a language model with contextual examples to guide its understanding and expected output for a specific task. This is technique is particularly helpful for models with limited training data or when adapting the model to new domains or tasks.
+
+Chain-of-thought (CoT) prompting is a technique that divides intricate reasoning tasks into smaller intermediary steps. This technique can help the model reason through the task in a structured manner and improve its ability to handle complex tasks.
+
+Zero-shot prompting is a technique where a user presents a task to a generative model without providing any examples or explicit training for that specific task. Instead, it relies solely on the general knowledge acquired during pre-training to perform the task based on the prompt.
+
+<img width="1013" height="401" alt="image" src="https://github.com/user-attachments/assets/e5614d68-0710-4084-a708-24b0fa012bd7" />
+
+
+-----------------------
+
+<img width="902" height="775" alt="image" src="https://github.com/user-attachments/assets/ae33e442-dfea-4514-9b00-8a89f768ca7e" />
+
+-----------------------
+
+Prompt engineering is a technique used to optimize the input prompts given to a large language model (LLM) or foundation model (FM) in order to achieve desired outputs. This method is particularly effective for guiding the model’s behavior, tone, and style without needing extensive and costly adjustments, such as fine-tuning the model on new datasets. By carefully crafting prompts with appropriate context, keywords, and instructions, users can control how the model responds, ensuring that the output aligns with specific business needs, such as a company’s branding and conversational style.
+
+<img width="940" height="788" alt="image" src="https://github.com/user-attachments/assets/730fcc79-81dc-422d-826f-7c34cdfa3d6d" />
+
+Prompt engineering is often the first recommended step for customizing a foundation model to a particular use case because it does not involve altering the model’s underlying weights or structure. This approach is both cost-efficient and versatile, allowing for the rapid adaptation of models across various domains and tasks. Other methods like fine-tuning or retrieval-augmented generation (RAG) may be employed if more significant customization is needed. Still, prompt engineering remains the most economical and immediate solution for adjusting model outputs.
+
+Hence, the correct answer is: Prompt engineering.
+
+The option that says: Hyperparameter tuning is incorrect because it involves adjusting the parameters that control a model’s learning process, such as the learning rate, batch size, or number of layers. While it can improve a model’s performance on specific tasks, it doesn’t directly influence the model’s output style or tone. Additionally, it is a time-consuming and computationally expensive process, conflicting with the need for a cost-efficient solution.
+
+The option that says: Feature engineering is incorrect. This option is about creating new input features or modifying existing ones to improve model performance. This method is only used before training a model to help it learn better from the data, but it does not address post-training modifications such as adjusting the style or tone of the chatbot’s responses.
+
+The option that says: Data preprocessing is incorrect because it is primarily used to prepare raw data for model training by cleaning, normalizing, or transforming the data into a format that the model can effectively process. While data preprocessing is crucial for improving model performance, it does not directly impact how the model generates responses in terms of style or tone.
+
+
+
+------------------
+
+Generative AI models offer powerful capabilities for enhancing customer support systems by generating responses, handling inquiries, and providing automated assistance. However, deploying these models in a live production environment, particularly in customer support, requires careful consideration of potential challenges. Understanding the limitations of generative AI is essential to ensuring that the system can effectively and accurately serve customers.
+
+<img width="1600" height="896" alt="image" src="https://github.com/user-attachments/assets/bab12188-9b72-448f-8798-f01884fb7b26" />
+
+Hallucination is a significant concern when using generative AI models. These models can produce responses that seem accurate but are factually incorrect or entirely fabricated. This phenomenon, known as “hallucination,” can lead to misleading or false information being provided to customers. The risk of hallucination underscores the need for careful validation and oversight of AI-generated responses in customer support systems.
+
+Another limitation of generative AI is the knowledge cutoff. Generative AI models are trained on datasets available up to a certain point in time, and they do not have access to real-time data or updates. This limitation can result in the models providing outdated information, which is especially problematic in dynamic environments where up-to-date knowledge is crucial. The knowledge cutoff can limit the effectiveness of the AI in providing accurate and relevant responses to customers.
+
+Hence, the correct answers are:
+
+     – Hallucination
+
+     – Knowledge Cutoff
+
+The option that says: Fraud detection is incorrect because it is typically associated with classification or anomaly detection models, not generative AI. Generative AI focuses on creating new content or data rather than identifying fraudulent activities.
+
+The option that says: Personalization is incorrect because it only refers to tailoring content or experiences based on individual preferences or behaviors. While generative AI can be used for personalization, it is not a limitation or drawback of the technology itself.
+
+The option that says: Low Recall is incorrect because it is just a performance metric usually associated with classification models, where the model fails to identify relevant instances. Generative AI models are not evaluated based on recall, so this is not a relevant limitation for generative AI.
+
+--------------------
+
+The AWS Cloud Adoption Framework (CAF) outlines key capabilities needed for effective AI integration, including governance, talent management, and security considerations.
+
+<img width="1069" height="668" alt="image" src="https://github.com/user-attachments/assets/99ae66b8-fd22-4113-ad4d-a7238be50d2d" />
+
+The foundational capability required to ensure the effective and responsible use of generative AI is the Governance Perspective. Governance focuses on establishing the policies, procedures, and frameworks that guide the ethical and responsible use of AI technologies. It ensures that AI systems align with legal, ethical, and organizational standards, helping to mitigate risks related to bias, fairness, transparency, and accountability.
+
+Effective governance is key to ensuring that AI applications, such as those generating personalized marketing content, adhere to best practices and are used responsibly within the organization’s broader strategic goals.
+
+Hence, the correct answer is: Governance Perspective.
+
+The option that says: Business Perspective is incorrect because this perspective is typically essential for ensuring the effective and responsible use of generative AI, as it involves understanding the business goals, use cases, and potential impacts of the AI system.
+
+The option that says: People Perspective is incorrect. Although it’s primarily important for understanding the human impact of AI, it doesn’t encompass the necessary frameworks for ensuring responsible AI use.
+
+The option that says: Security Perspective is incorrect. Although security is critical for protecting AI systems, it doesn’t fully cover the governance needed for responsible AI practices.
+
+-----------------
+
+Instruction-based fine-tuning is a process where a pre-trained foundation model is further trained with specific instructions to perform particular tasks. This approach helps the model understand and follow detailed guidance, generating more accurate and relevant responses. By fine-tuning the model with task-specific instructions, the model ecomes capable of handling complex tasks, such as multi-turn conversations or generating personalized recommendations based on user input. This method uses the model’s existing knowledge while refining its ability to execute specific tasks, making it ideal for scenarios that require detailed, task-oriented responses.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d35d6ee1-249a-41be-9346-51d3d2060b36" />
+
+Instruction-based fine-tuning is particularly valuable when you need to customize a foundation model to fit the specific needs of your application. This approach allows for a high degree of customization while benefiting from the powerful capabilities of the pre-trained foundation model. AWS provides tools and services within the SageMaker environment that facilitate this fine-tuning process, ensuring that the model can meet the unique demands of your application.
+
+Hence, the correct answer is: Instruction-based fine-tuning.
+
+The option that says: Domain adaptation fine-tuning is incorrect because this approach uses a pre-trained model to improve its performance only in a specific domain. This method is more about making the model knowledgeable in a specific domain rather than improving its ability to manage complex conversational tasks or adapt to individual user preferences, which are critical requirements for the travel agency.
+
+The option that says: Zero-shot learning is incorrect. This approach allows a model to perform a task without having been explicitly trained on that task. Although it works on limited training data, it does not suffice for tasks needing deep contextual understanding and interaction, like multi-turn conversations and personalized travel recommendations.
+
+The option that says: Few-shot learning is incorrect because it is primarily designed to train a model with limited data. This option few-shot does not address the complexities of multi-turn conversations or detailed personalized recommendations.
+
+---------------------
+
+Domain adaptation fine-tuning allows you to leverage pre-trained foundation models and adapt them to specific tasks using limited domain-specific data. If prompt engineering efforts do not provide enough customization, you can use domain adaption fine-tuning to get your model working with domain-specific languages, such as industry jargon, technical terms, or other specialized data. This fine-tuning process modifies the weights of the model.
+
+<img width="1051" height="597" alt="image" src="https://github.com/user-attachments/assets/67619f01-3c71-4d42-9842-09880823e748" />
+
+Domain adaptation fine-tuning is suitable for adapting a pre-trained language model to specific types of text data, such as product descriptions from an e-commerce site. This approach adjusts the model’s understanding of domain-specific language and terminology using the dataset of existing product descriptions.
+
+Hence, the correct answer is: Domain adaptation fine-tuning.
+
+The option that says: Instruction-based fine-tuning is incorrect because this is primarily designed to enhance a model’s performance on specific tasks by providing labeled examples in the form of prompt-response pairs. This approach is more suited for tasks requiring specific instructions and responses rather than domain-specific text generation.
+
+The option that says: Transfer learning is incorrect because it typically refers to applying a pre-trained model to a different but related task, but it does not specifically involve fine-tuning with domain-specific data. While transfer learning is a general concept, domain adaptation fine-tuning is more precisely suited for the described use case.
+
+The option that says: Unsupervised pre-training is incorrect because it involves training a model on a large, general dataset without specific labels or tasks. It is not directly applicable for fine-tuning a model on domain-specific text like product descriptions, where domain adaptation fine-tuning is more appropriate.
+
+-------------------
 
 
