@@ -3695,4 +3695,27 @@ The option that says: Unsupervised pre-training is incorrect because it involves
 
 -------------------
 
+Embeddings are numerical representations of real-world objects that machine learning (ML) and artificial intelligence (AI) systems use to understand complex knowledge domains like humans. For example, computing algorithms understand that the difference between 2 and 3 is 1, indicating a close relationship between 2 and 3 compared to 2 and 100. However, real-world data includes more complex relationships. For example, a bird-nest and a lion-den are analogous pairs, while day-night are opposite terms. Embeddings convert real-world objects into complex mathematical representations that capture inherent properties and relationships between real-world data.
+
+<img width="1121" height="573" alt="image" src="https://github.com/user-attachments/assets/13e85174-fc7c-4e1d-b89d-fd3e042402a8" />
+
+Typically, these vectors are stored in vector databases, which are optimized for vector search. This allows for faster retrieval and comparison of similar vectors based on their semantic meaning. This is crucial for generating accurate summaries, as the model can better comprehend the essential ideas and nuances within the text, leading to more coherent and meaningful outputs.
+
+Hence, the correct answer is: They convert textual content into numerical vectors that represent semantic meaning.
+
+The option that says: They compress the entire document into a single text file is incorrect. Embeddings do not compress text into a single file. Instead, they transform a text into numerical vectors. Compression is a different process that reduces file size without necessarily preserving semantic meaning.
+
+The option that says: They ensure the output words are in their base or root forms is incorrect. This option describes stemming or lemmatization, which are preprocessing steps to reduce words to their base forms. Embeddings specifically focus on representing the semantic meaning of words or phrases rather than normalizing word forms.
+
+The option that says: They break the text into smaller units, such as words or subwords, to assist in translation is incorrect. This option describes tokenization, not embeddings. Tokenization simply prepares text for further processing, whereas embeddings convert text into numerical vectors that capture meaning.
+
+The option that says: A sentiment score indicating how relevant the request is to the context is incorrect. Embedding models only convert text into numerical representations and do not evaluate sentiment. Instead, embeddings capture the semantic meaning of the text without assessing its emotional tone or relevance to the context.
+
+The option that says: An array of 1s and 0s indicating how relevant the request is to the context is incorrect. This option describes a binary feature representation, which is not what embedding models produce. Embeddings generate dense, continuous vectors rather than binary arrays.
+
+The option that says: A summary of the user’s preferences based on the input is incorrect. Embedding models do not generate summaries; they simply represent the text numerically. Summarization would be handled by different types of models, like text summarization models, not embeddings.
+
+
+--------------
+
 
