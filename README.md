@@ -3335,6 +3335,8 @@ Additional Learnings:
 
 For the **AWS Certified AI Practitioner (AIF-C01)** exam, you must understand not just the definition of these algorithms, but specifically *when* to apply them (use cases) and their unique data requirements.
 
+<img width="1131" height="628" alt="image" src="https://github.com/user-attachments/assets/07428cdd-eb15-4ff2-a9bb-c1d759f71a6e" />
+
 Here is a detailed breakdown of the four requested algorithm types, mapped to their specific Amazon SageMaker built-in implementations.
 
 ## 1. Forecasting Algorithm: DeepAR
