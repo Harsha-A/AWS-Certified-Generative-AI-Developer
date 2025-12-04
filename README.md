@@ -3724,3 +3724,179 @@ The option that says: A summary of the user’s preferences based on the input i
 --------------
 
 
+AWS Artifact is a comprehensive and central resource for accessing AWS’s compliance-related information. It offers on-demand access to AWS’s security and compliance reports, including audit artifacts such as Service Organization Control (SOC) reports, Payment Card Industry (PCI) reports, and certifications from the International Organization for Standardization (ISO). AWS Artifact is designed to help customers manage their compliance posture effectively by offering a self-service portal where they can retrieve compliance documentation. This service allows customers to meet regulatory requirements, such as HIPAA, HITRUST, and other industry-specific standards, by ensuring they have the necessary documentation to demonstrate compliance to auditors and regulatory bodies.
+
+<img width="1920" height="918" alt="image" src="https://github.com/user-attachments/assets/13befba4-0bae-4a9e-a561-b4752925dcdf" />
+
+
+Furthermore, AWS Artifact provides customers with an easy way to download and review compliance documents anytime, simplifying the compliance and auditing process. It is particularly advantageous for organizations in highly regulated industries, such as healthcare, finance, and government sectors, where adherence to strict regulatory requirements is crucial. By utilizing AWS Artifact, organizations can confidently build and manage their cloud infrastructure on AWS, knowing they have access to the essential compliance documentation needed to support their regulatory and compliance obligations.
+
+Hence, the correct answer is: AWS Artifact.
+
+The option that says: Amazon Macie is incorrect because this is just a data security service that uses machine learning to automatically discover, classify, and protect sensitive data within your AWS environment. It is particularly focused on identifying and alerting users about personally identifiable information (PII) and other sensitive data stored in Amazon S3.
+
+The option that says: AWS CloudTrail is incorrect because this service is primarily for governance, compliance, and operational and risk auditing of your AWS account. It records AWS API calls and events for your account, providing detailed logs of user activity. Its primary focus is to provide visibility into API activity rather than to supply the compliance documentation needed for regulatory audits.
+
+The option that says: AWS Security Hub is incorrect because this security service only provides a comprehensive view of your high-priority security alerts and compliance status across AWS accounts.
+
+------------------
+
+Amazon SageMaker Model Monitor is a capability of Amazon SageMaker that monitors machine learning models in production for data drift, concept drift, and other issues that may impact model quality. It continuously monitors the data inputs and model predictions to detect deviations from the model’s expected behavior. Model Monitor can automatically alert users when it detects issues, allowing them to take corrective actions.
+
+Amazon Augmented AI (Amazon A2I) is a service that makes it easy to build human review workflows for machine learning predictions. It allows developers to incorporate human review into their machine learning applications to improve model accuracy and ensure compliance with regulatory or business requirements. With Amazon A2I, developers can create human review workflows, manage the workforce, and integrate human review into their applications.
+
+<img width="1362" height="957" alt="image" src="https://github.com/user-attachments/assets/e2a49992-18dc-4a82-91d8-08e8c292b0ad" />
+
+By using Amazon SageMaker Model Monitor and Amazon Augmented AI together, the company can comprehensively monitor the performance of your deployed machine learning model, receive alerts when issues are detected, and incorporate human review to validate or correct the model’s predictions, ultimately ensuring the model’s reliability and accuracy over time.
+
+Hence, the correct answers are:
+
+– Amazon SageMaker Model Monitor
+
+– Amazon A2I (Amazon Augmented AI)
+
+The option that says: Amazon Bedrock is incorrect because it’s mainly a service that offers leading foundation models (FMs) and a set of capabilities to quickly build and scale generative artificial intelligence (generative AI) applications, not for monitoring models or incorporating human review in production.
+
+The option that says: Amazon SageMaker Ground Truth is incorrect because this service just provides data labeling capabilities, which are useful during the model training phase. However, it is not directly related to monitoring or human review of deployed models in production environments. Additionally, Ground Truth is primarily used to create high-quality training datasets by leveraging human annotators or automated labeling workflows.
+
+The option that says: Amazon SageMaker Data Wrangler is incorrect because it’s a feature within Amazon SageMaker that helps with data preparation and feature engineering tasks. It provides tools for data exploration, transformation, and feature creation, which are essential steps in the machine learning model development process. Similar to Amazon SageMaker Ground Truth this feature is not designed for monitoring the performance of deployed models or incorporating human review of model predictions.
+
+-------------------
+
+The National Institute of Standards and Technology (NIST) develops comprehensive recommendations and standards for US federal information systems. These principles assure the confidentiality, integrity, and availability of information, making them necessary for federal regulatory compliance.
+
+The NIST AI Risk Management Framework (AI RMF) is a valuable tool for controlling the hazards connected with artificial intelligence. It is intended to enhance the ability to incorporate trustworthiness factors into designing, developing, implementing, and evaluating AI products, services, and systems. The framework encourages the responsible use of AI technologies, ensuring that they are developed and implemented to protect privacy, civil liberties, and rights while improving security and resilience.
+
+<img width="1200" height="672" alt="image" src="https://github.com/user-attachments/assets/c897da7b-882e-4212-a3e7-15c1a93182b3" />
+
+The NIST Special Publication 1800-26 provides actionable principles for increasing the security and privacy of information systems. This technique is for establishing cybersecurity safeguards that assure data confidentiality, integrity, and availability. These standards and guidelines are widely used throughout federal organizations and institutions that handle sensitive data, guaranteeing compliance with federal rules such as the Federal Information Security Management Act (FISMA).
+
+The NIST AI RMF and the guidance from NIST Special Publication 1800-26 together provide a structured approach for managing AI risks and enhancing the security of information systems. This ensures that the generative AI solution meets US government regulatory requirements.
+
+Hence, the correct answer is: National Institute of Standards and Technology (NIST).
+
+The option that says: Federal Risk and Authorization Management Program (FedRAMP) is incorrect because this simply focuses on cloud services for federal agencies. While relevant for cloud products, it does not provide the comprehensive security standards and guidelines that the NIST framework does for all federal information systems.
+
+The option that says: Payment card industry data security standard (PCI-DSS) is incorrect because it is primarily focused on securing credit card transactions and protecting cardholder data rather than providing a comprehensive framework for information security within federal information systems.
+
+The option that says: Health Insurance Portability and Accountability Act (HIPAA) is incorrect because it only addresses the protection of health information and patient privacy in healthcare settings. While important for healthcare data, HIPAA does not encompass the broader scope of security and compliance requirements necessary for managing sensitive federal research data within a research institution.
+
+----------------
+
+Ensuring security and privacy is paramount when developing and deploying AI systems, particularly generative AI models. Key considerations include protecting the system from malicious inputs and ensuring the confidentiality and integrity of data. This involves employing prompt filtering, sanitization, and validation techniques to prevent prompt injection attacks and malicious content from influencing the AI’s behavior.
+
+The Open Web Application Security Project (OWASP) is a well-known nonprofit organization focused on improving software security. They provide resources, including the OWASP Top 10, which outlines the most critical security vulnerabilities that could affect software applications, including generative AI models.
+
+<img width="1025" height="803" alt="image" src="https://github.com/user-attachments/assets/70f004b3-82f4-467c-8f41-75003de97f67" />
+
+Prompt Injection involves manipulating the AI model’s input prompts to cause it to produce unintended or harmful outputs. It is crucial to address this vulnerability to prevent malicious users from exploiting the model’s behavior.
+
+Training data poisoning involves attackers manipulating the training data to corrupt the AI model’s learning process. This vulnerability can significantly impact the model’s accuracy and reliability, making it a critical concern.
+
+Model denial of service involves overwhelming the AI system with excessive or malicious requests to exhaust its computational resources. This can lead to degraded performance or unavailability, a critical issue for customer-facing applications.
+
+Hence, the correct answers are:
+
+– Prompt Injection
+
+– Training data poisoning
+
+– Model denial of service
+
+Excessive agency is incorrect because excessive agency refers primarily to the idea that AI might overstep or be given too much authority. It is not typically categorized as a direct security vulnerability that affects the model’s integrity.
+
+Model theft is incorrect because it does not immediately impact the model’s performance, behavior, or availability. Attacks such as prompt injection or denial of service can cause real-time disruptions, like altering outputs or blocking access to services. In contrast, model theft is typically a covert, gradual process aimed at intellectual property, without directly affecting system operations. Although it is a serious concern, it is less urgent in customer-facing environments where uptime and response integrity are critical.
+
+Overreliance on AI capabilities is incorrect because while overreliance might lead to decision-making or operational efficiency issues, it does not directly pertain to a specific security vulnerability.
+
+------------
+
+AWS Identity and Access Management (IAM) is a service that allows you to control the use of AWS services and resources. IAM lets you set up and handle AWS users and groups, as well as define permissions to allow or prohibit access to AWS resources. IAM allows you to build fine-grained access control by defining roles and policies that determine who may access specific services and what activities they can do.
+
+<img width="1839" height="571" alt="image" src="https://github.com/user-attachments/assets/61431110-6c80-455b-9e2c-ccf63a390109" />
+
+AWS Identity and Access Management (IAM) allows administrators to define and enforce permissions for AWS services and resources. IAM is suitable for managing access to Amazon SageMaker and Amazon RDS by creating specific policies that define which applications or services can access these resources. By utilizing IAM roles and policies, the engineer can ensure that only authorized applications and services have the necessary permissions.
+
+IAM is the correct service to manage and enforce permissions for applications and services across AWS, including Amazon SageMaker and Amazon RDS.
+
+Hence, the correct answer is: AWS Identity and Access Management (IAM).
+
+The option that says: AWS Secrets Manager is incorrect because it is primarily used for storing and managing access to sensitive information such as database credentials and API keys. Although it enhances security by rotating and managing secrets, it does not control access permissions to AWS resources like Amazon SageMaker and Amazon RDS.
+
+The option that says: AWS Security Token Service (STS) is incorrect because it simply provides temporary credentials for accessing AWS services. However, it is not a comprehensive solution for managing long-term permissions for specific applications and services.
+
+The option that says: VPC Endpoint Policy is incorrect because it is only used to control access to AWS services over a VPC endpoint. While it provides network-level control, it is limited in scope and does not offer the comprehensive permissions management needed for managing access across different services like Amazon SageMaker and Amazon RDS.
+
+------------
+
+AWS CloudTrail is a service provided by AWS that enables you to audit, govern, and ensure compliance within your AWS account. Events are recorded in CloudTrail to capture actions performed by users, roles, or AWS services. These events encompass actions carried out in the AWS Management Console, AWS Command Line Interface, and AWS SDKs and APIs. CloudTrail is automatically active in your AWS account upon its creation. Any activity in your AWS account is then logged as a CloudTrail event.
+
+By enabling CloudTrail, the startup can monitor and audit API activity related to their AI workloads, addressing concerns about unauthorized access to sensitive data and model parameters.
+
+<img width="1822" height="743" alt="image" src="https://github.com/user-attachments/assets/ab051d13-89c3-4fb7-9f87-e50781b7367e" />
+
+Hence, the correct answer is: AWS CloudTrail.
+
+Amazon Inspector is incorrect because it is primarily designed as a security assessment service that helps identify vulnerabilities in applications and instances. It does not specifically track API activity or provide auditing capabilities like CloudTrail does.
+
+AWS Trusted Advisor is incorrect because it only provides recommendations to help optimize AWS resources for cost, performance, security, fault tolerance, and service quotas. It does not record, monitor, or audit API calls made to AWS services. AWS CloudTrail should be used instead to track and review API activity.
+
+AWS Config is incorrect. AWS Config provides a detailed view of AWS resources and their configurations. It helps with compliance and governance by recording changes to resource configurations. However, it does not directly audit API activity as CloudTrail does.
+
+----------------
+
+AWS Artifact is a self-service portal that provides access to on-demand AWS compliance documentation. This service offers a comprehensive repository of AWS’s security and compliance reports, including certifications, attestations, and agreements. These documents are essential for customers in highly regulated industries, such as healthcare, finance, and biotechnology, as they prove AWS’s adherence to industry standards and regulatory requirements. AWS Artifact helps organizations ensure that their data hosted on AWS complies with frameworks like HIPAA, GDPR, and PCI DSS.
+
+<img width="1920" height="925" alt="image" src="https://github.com/user-attachments/assets/3d27af28-9b0d-4849-bf9d-9bf3f6620839" />
+
+Organizations can download these compliance reports and agreements using AWS Artifact to satisfy internal audits and regulatory reviews. The service is designed to be easy to navigate, allowing users to quickly find specific reports relevant to their needs. Additionally, AWS Artifact is continuously updated with the latest compliance information, ensuring companies can access the most up-to-date documentation as AWS maintains and expands its compliance programs.
+
+Hence, the correct answer is: AWS Artifact. 
+
+The option that says: AWS Config is incorrect. This service is only used for assessing, auditing, and evaluating the configurations of your AWS resources rather than providing compliance reports.
+
+The option that says: AWS Trusted Advisor is incorrect because it is primarily designed to provide real-time best practices guidance to help you optimize your AWS environment but does not provide detailed compliance information.
+
+The option that says: Amazon Inspector is incorrect. This option is a security assessment service that helps analyze the security state of the EC2 instances by identifying potential vulnerabilities. While it is useful for improving the security posture of the infrastructure, it does not provide the compliance reports or documentation needed to verify AWS’s regulatory compliance.
+
+------------
+
+AWS PrivateLink allows you to connect your VPC directly to AWS services without exposing your data to the public internet. This is important for businesses that must meet strict compliance standards, as it keeps your network traffic completely private and within the AWS network without relying on public-facing gateways or external connections.
+
+<img width="1834" height="542" alt="image" src="https://github.com/user-attachments/assets/2ff0947b-0c5d-44de-b324-8fbdb1a3caf5" />
+
+AWS PrivateLink provides a secure method of connecting your VPC to Amazon Bedrock, allowing the AI-driven application to communicate with other AWS services without any internet exposure. As a result, this meets the organization’s requirement to prohibit any internet connectivity to or from the VPC.
+
+Hence, the correct answer is: AWS PrivateLink.
+
+The option that says: AWS Direct Connect is incorrect because this service only provides a dedicated network connection from on-premises to AWS but does not inherently prevent internet connectivity within the VPC.
+
+The option that says: Amazon S3 VPC Endpoint is incorrect because it simply allows private connectivity to Amazon S3 and would not cover the need to connect to other AWS services like Amazon Bedrock.
+
+The option that says: Internet gateway is incorrect because it primarily enables internet connectivity, which directly violates the organization’s requirement to prohibit internet access to or from the VPC.
+
+------------------
+
+AWS Artifact provides on-demand access to AWS’s compliance documentation and agreements, such as SOC reports, PCI reports, and certifications from accreditation bodies. It is specifically designed to access and review compliance-related documents.
+
+<img width="1805" height="889" alt="image" src="https://github.com/user-attachments/assets/d1d3e6ff-7722-4542-a041-cd934e2d28a9" />
+
+Independent Software Vendors (ISVs) that build on AWS can leverage AWS Artifact to access security and compliance reports for their applications, ensuring that their solutions meet industry standards and regulatory requirements.
+
+Hence, the correct answer is: AWS Artifact.
+
+The option that says: AWS Audit Manager is incorrect because this service primarily helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards. It does not provide access to AWS compliance documentation and agreements.
+
+The option that says: AWS Config is incorrect. This service enables you to assess, audit, and evaluate the configurations of your AWS resources. It helps you track configuration changes and compliance over time but does not provide access to compliance documentation and agreements.
+
+The option that says: AWS CloudTrail is incorrect because it typically enables governance, compliance, and operational and risk auditing of your AWS account. It records AWS API calls and events for your account and delivers log files to you. While useful for auditing and monitoring, it does not provide access to compliance documentation and agreements.
+
+------------------
+
+
+
+
+
+
+
+
