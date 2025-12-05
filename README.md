@@ -3893,6 +3893,313 @@ The option that says: AWS CloudTrail is incorrect because it typically enables g
 
 ------------------
 
+Amazon Bedrock is a service that provides access to foundation models (FMs) from leading AI providers. It allows businesses to integrate and scale generative AI applications without the complexity of managing underlying infrastructure. With Amazon Bedrock, companies can easily access various pre-trained models for tasks such as text generation, chatbots, image recognition, and more. This service offers flexibility in choosing the best models for specific use cases, enabling organizations to leverage cutting-edge AI technology to enhance their applications and customer experiences.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/11369347-f941-4ba0-b57e-d264c596dc1b" />
+
+Even though foundation models (FMs) are pre-trained, they can keep learning from data inputs or prompts during inference. This means that you can generate detailed outputs by using well-crafted prompts. Some tasks that FMs can handle include language processing, visual comprehension, code generation, and human-centered engagement.
+
+Hence, the correct answers are:
+
+– Visual comprehension has the capability to identify objects, scenes, and other elements within images.
+
+– Language processing can answer natural language questions and even write short scripts or articles in response to prompts.
+
+– Speech to text is specifically designed for tasks like transcription and video captioning in various languages.
+
+The option that says: Hugging Face is incorrect. This option is just a platform that provides open-source tools for developing and deploying machine learning models. It functions as a community hub where developers can both share and explore models and datasets.
+
+The options that say: Image classification, High-resolution image creation and editing, Document extraction and Language translation are incorrect because they only represent the specific applications of foundational models rather than its capabilities. Foundational models are designed to handle a wide range of functionalities across different domains, including but not limited to visual comprehension and language processing.
+
+-----------------
+
+ROUGE (Recall-Oriented Understudy for Gisting Evaluation) is a set of metrics specifically designed to evaluate the quality of text summaries by comparing them to human reference summaries. It measures the overlap of n-grams, word sequences, and word pairs between the generated and reference summaries, focusing on recall. This makes ROUGE particularly effective for assessing how well a model-generated summary captures the critical content of the original text.
+
+The following list includes the names and descriptions of the ROUGE metrics available after fine-tuning big language models in Autopilot.
+
+– ROUGE-N (e.g., ROUGE-1, ROUGE-2) measures the overlap of n-grams between the generated text and the reference text, with n indicating the size of the n-grams.
+
+– ROUGE-L calculates the longest common subsequence between the generated and reference texts, considering both content overlap and word order.
+
+– ROUGE-L-SUM is a variant of ROUGE-L specifically designed for summarization tasks, focusing on the longest common subsequence while accounting for word order in the summaries.
+
+<img width="1112" height="402" alt="image" src="https://github.com/user-attachments/assets/d58a3957-1697-4f70-ad6a-5bd5f04846a4" />
+
+ROUGE is the most appropriate metric for evaluating text summaries because it is specifically designed for this purpose. It measures how much of the important information from the reference summary is captured in the generated summary, which is essential for determining the effectiveness of a summarization model.
+
+Hence, the correct answer is: Recall-Oriented Understudy for Gisting Evaluation (ROUGE).
+
+The option that says: BLEU (Bilingual Evaluation Understudy) is incorrect because this metric more commonly used for evaluating machine translation rather than summarization. It measures precision by comparing the n-grams of the generated text with the reference but is less suited for tasks focused on recall like summarization.
+
+The option that says: F1 score is incorrect because it is simply a general metric for evaluating classification models, balancing precision and recall. While it is helpful for many machine learning tasks, it is not explicitly designed to assess the quality of text summaries, making it less suitable for this scenario.
+
+The option that says: Cross-Entropy Loss is incorrect because it is just a metric used during the training phase of a model to measure the difference between the predicted and actual outputs. It is not an evaluation metric for the quality of generated summaries but rather a tool for optimizing model performance during training.
+
+-----------------
+
+AWS Identity and Access Management (IAM) allows for the implementation of role-based access control (RBAC), which is essential for managing permissions and access to resources in your AI application. IAM roles and policies can be defined to control who can access and modify AI application resources, ensuring secure and appropriate access.
+
+<img width="1021" height="730" alt="image" src="https://github.com/user-attachments/assets/daa4aec5-b87c-4ad2-8231-1f1c8f7b83ea" />
+
+Amazon Bedrock Content Guardrails is a feature specifically designed to define policies that prevent the generation of explicit or offensive content. It helps in setting up guardrails to ensure that the content produced by the generative AI models adheres to the desired content guidelines and standards.
+
+<img width="1021" height="728" alt="image" src="https://github.com/user-attachments/assets/5d05f3e0-6706-45de-a28a-4f486f97ac57" />
+
+AWS Key Management Service (KMS) provides encryption for data used in training and inference processes. By using KMS, you can manage the encryption keys that protect your data, ensuring that data at rest and in transit is secure and compliant with encryption standards.
+
+<img width="1019" height="738" alt="image" src="https://github.com/user-attachments/assets/36b77d14-4a0c-4d8e-abaf-7ab7d6aa275a" />
+
+Hence, the correct answers are:
+
+– Implement role-based access control for your AI application resources: AWS Identity and Access Management (IAM)
+
+– Define policies to prevent the generation of explicit or offensive content: Amazon Bedrock Content Guardrails
+
+– Encrypt data used for training and inference in your AI models: AWS Key Management Service (KMS)
+
+The option that says: AWS CloudTrail is incorrect because CloudTrail is primarily used for logging and monitoring API calls and does not directly manage access control, content guardrails, or encryption.
+
+-------------
+
+Amazon Textract is an advanced machine learning (ML) service that automatically extracts text, handwriting, layout elements, and data from scanned documents. It surpasses traditional optical character recognition (OCR) by identifying, understanding, and extracting specific data from documents. Many companies currently extract data from scanned documents, such as PDFs, images, tables, and forms, either manually or through OCR software that requires manual configuration. This often necessitates updates when the form changes. Textract eliminates the need for these manual and costly processes by using ML to accurately read and process any type of document, extracting text, handwriting, tables, and other data effortlessly.
+
+<img width="1508" height="858" alt="image" src="https://github.com/user-attachments/assets/913d8592-d1a8-43ee-93ce-0e2ed5eba385" />
+
+Hence, the correct answer is: Amazon Textract.
+
+The option that says: Amazon Polly is incorrect because it is designed as a text-to-speech service that converts text into lifelike speech. It cannot extract text from scanned documents. Polly does the opposite of what’s needed in this scenario—it generates speech from text rather than extracting text from images.
+
+The option that says: Amazon Comprehend is incorrect because it is a natural language processing (NLP) service that analyzes text for sentiment, entities, and key phrases. It doesn’t directly extract structured data from scanned documents. While Comprehend is useful for understanding the content of text, it doesn’t address the specific requirement of extracting structured data.
+
+The option that says: Amazon Rekognition is incorrect because it is primarily used for image and video analysis, including face recognition, object detection, and content moderation. It doesn’t focus on text extraction from documents. Rekognition is not the right fit for the scenario described; it’s more about visual analysis.
+
+----------------
+
+Vector search is a method used in machine learning to find similar data points to a given data point by comparing their vector representations using distance or similarity metrics. The closer the two vectors are in the vector space, the more similar the underlying items are considered to be. This technique helps capture the semantic meaning of the data. This approach is useful in various applications, such as recommendation systems, natural language processing, and image recognition.
+
+<img width="1121" height="573" alt="image" src="https://github.com/user-attachments/assets/17994dc3-a075-4672-adf3-94958c0b7267" />
+
+A vector database, specifically designed to handle vector representations of data efficiently, excels in storing, indexing, and retrieving vectors compared to traditional databases. Traditional databases typically handle scalar values and are optimized for transactional operations, which can be limiting for AI-driven queries that require rapid computation of vector similarities. In contrast, vector databases use specialized indexing algorithms, such as approximate nearest neighbor (ANN) search, which significantly speeds up query times and maintains high accuracy, even in large datasets. This makes them particularly advantageous for AI applications, where quick and precise retrieval of similar items based on complex, high-dimensional data is crucial. These capabilities allow for more dynamic and responsive AI systems, such as real-time personalized recommendation engines and instant image or voice recognition services.
+
+Here are some services in AWS that you can use for your vector database requirements:
+
+Amazon OpenSearch Service makes it easy for you to perform interactive log analytics, real-time application monitoring, website search, and more. For vector databases, you can read about k-Nearest Neighbor (k-NN) search in OpenSearch Service.
+
+Amazon Aurora PostgreSQL-Compatible Edition and Amazon Relational Database Service (Amazon RDS) for PostgreSQL support the pgvector extension to store embeddings from machine learning (ML) models in your database and to perform efficient similarity searches.
+
+Amazon Neptune ML is a capability of Neptune that uses Graph Neural Networks (GNNs), an ML technique purpose-built for graphs, to make easy, fast, and more accurate predictions using graph data.
+
+Amazon MemoryDB supports storing millions of vectors, with single-digit millisecond query and update response times, and tens of thousands queries per second (QPS) at greater than 99% recall.
+
+Amazon DocumentDB (with MongoDB compatibility) supports vector search, a new capability that enables you to store, index, and search millions of vectors with millisecond response times. With vector search for Amazon DocumentDB, you can simply set up, operate, and scale databases for your ML applications.
+
+Hence, the correct answers are:
+
+  – Amazon OpenSearch Service
+
+  – Amazon Neptune ML
+
+  – Amazon DocumentDB (with MongoDB compatibility)
+
+Amazon S3 is incorrect. This service is primarily an object storage service designed for storing and retrieving large amounts of data. While it can store vectors as files, it lacks built-in capabilities for indexing and searching vectors efficiently. For vector search, you need a service that supports real-time querying and similarity search, which S3 does not provide.
+
+Amazon Redshift is incorrect because this is mainly a data warehouse service designed for running complex queries on large datasets. Although it may be possible to implement vector search using custom User Defined Functions (UDFs), this approach would involve additional complexity and introduce potentially higher query latency.
+
+Amazon Quicksight is incorrect. This service is simply a business intelligence and visualization service for creating dashboards and reports. It is not designed for vector search or indexing.
+
+ 
+
+References:
+
+https://aws.amazon.com/what-is/vector-databases/
+
+https://docs.aws.amazon.com/neptune-analytics/latest/userguide/vector-similarity.html
+
+https://docs.aws.amazon.com/documentdb/latest/developerguide/vector-search.html
+
+https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vector-search.html
+
+---------------
+
+Amazon Textract is an OCR (Optical Character Recognition) service that extracts text from scanned images and PDF files. It can handle various formats, including printed text and handwriting. By integrating Textract, the app can accurately extract text from images, which is crucial for providing spoken language output to visually impaired users.
+
+<img width="1508" height="858" alt="image" src="https://github.com/user-attachments/assets/c89322de-bcd6-44f6-8edf-0a1108e2ba73" />
+
+Amazon Polly is a text-to-speech service that converts text into natural-sounding speech. It offers lifelike voices and supports multiple languages. By using Polly, the app can generate spoken language from the extracted text, making it accessible to visually impaired users.
+
+<img width="1422" height="849" alt="image" src="https://github.com/user-attachments/assets/28ced81b-8bad-4b12-b49c-2d170885e6f1" />
+
+When a user takes a picture of a document, handwritten note, or product label, the app sends the image to Amazon Textract to extract the text. Subsequently, the extracted text is sent to Amazon Polly to convert it into lifelike speech, which is then played back to the user.
+
+Hence, the correct answers are:
+
+– Amazon Textract
+
+– Amazon Polly
+
+The option that says: Amazon Comprehend is incorrect because it is a natural language processing (NLP) service that analyzes text for sentiment, entities, and key phrases. While it’s useful for understanding the content, it doesn’t directly address text-to-speech conversion.
+
+The option that says: Amazon Rekognition is incorrect because it only focuses on image and video analysis, including face and object recognition. It doesn’t specialize in text extraction or speech synthesis, so it is not the right choice for our specific use case.
+
+The option that says: Amazon Lex is incorrect because it is a service primarily for building conversational interfaces (chatbots) using natural language understanding (NLU). It’s designed to create interactive voice and text-based conversational experiences. While Lex is powerful for chatbots, it doesn’t directly handle text extraction from images or convert text to speech.
+
+-------------
+
+The DetectModerationLabels API is specifically designed for content moderation. It analyzes images to identify unsafe or inappropriate content, such as nudity, violence, or suggestive material. This API’s primary purpose is to detect moderation labels, making it suitable for filtering out unsafe content.
+
+When building a social media platform or any application that allows users to upload images, you can use DetectModerationLabels to flag or block content that violates community guidelines automatically. It provides a list of moderation labels associated with the image, along with confidence scores.
+
+<img width="1829" height="860" alt="image" src="https://github.com/user-attachments/assets/44d16c17-cd97-4af6-8555-18ae8d0d07cc" />
+
+Hence, the correct answer is: DetectModerationLabels.
+
+The option that says: DetectLabels is incorrect. This API identifies general labels and objects in an image but doesn’t specifically focus on moderation or unsafe content. It won’t provide the granularity needed for content filtering.
+
+The option that says: DetectFaces is incorrect because this API primarily detects faces in an image. It doesn’t directly address moderation labels. It’s more about facial analysis than content safety.
+
+The option that says: DetectText is incorrect. This API only focuses on extracting text from images, not identifying unsafe content. It won’t help with content moderation.
+
+----------------
+
+MAPE (Mean Absolute Percentage Error) calculates the average of the absolute differences between actual and projected values, divides it by actual values, and returns a percentage. A lower MAPE score indicates greater model performance because the predictions are more accurate and closer to the actual values.
+
+MAE (Mean Absolute Error) is the average difference between expected and actual values for all observations. It is a widely used statistic in numerical prediction tasks to evaluate a model’s prediction error. MAE computes the average absolute distance between predicted and actual values, making it simple to interpret. MAE is calculated by combining the absolute errors and dividing by the total number of observations. MAE values range from 0 to infinity, with lower values suggesting a better fit of the model to the dataset.
+
+<img width="1500" height="840" alt="image" src="https://github.com/user-attachments/assets/6ab8b5f9-1298-46bf-88f0-a1968be5f83a" />
+
+When evaluating a forecasting model for continuous numerical values like monthly revenue, it is crucial to use metrics that measure the difference between predicted and actual values. Metrics such as Mean Absolute Percentage Error (MAPE) and Mean Absolute Error (MAE) are suitable for regression and forecasting tasks.
+
+Hence, the correct answers are:
+
+– Mean absolute percentage error (MAPE)
+
+– Mean absolute error (MAE)
+
+The option that says: Accuracy is incorrect because this metric is typically used for classification tasks and does not provide meaningful insights for evaluating continuous value predictions like revenue forecasting,
+
+The option that says: InferenceLatency is incorrect because it only measures the time taken for a model to generate predictions and does not assess the accuracy or quality of the predictions themselves, which is critical in forecasting scenarios.
+
+The option that says: F1 score is incorrect because this is a metric specifically designed for classification problems, balancing precision and recall, and does not apply to regression tasks like revenue forecasting, where continuous value predictions are required.
+
+---------------------
+
+Amazon SageMaker Ground Truth provides a wide range of human-in-the-loop capabilities, enabling you to leverage human feedback throughout the machine learning process to enhance model accuracy and relevance. With SageMaker Ground Truth, you can perform various human-in-the-loop tasks, including data generation, annotation, model review, customization, and evaluation, either through a self-service or an AWS-managed option.
+
+For the vehicle detection task, you can create a labeling job, define the task type (object detection), and review the results.
+
+You can use Ground Truth to label images. Ground Truth label images have the following built-in task types:
+
+– Bounding Box
+
+– Image Semantic Segmentation
+
+– Auto-Segmentation Tool
+
+– Image Classification (Single Label)
+
+– Image Classification (Multi-label)
+
+– Image Label Verification
+
+<img width="1406" height="886" alt="image" src="https://github.com/user-attachments/assets/5b2828a8-f6e4-4d6a-b7aa-ad9deb1b2cde" />
+
+Hence, the correct answer is: Amazon SageMaker Ground Truth.
+
+The option that says: Amazon Rekognition Custom Labels is incorrect. While Amazon Rekognition Custom Labels can detect objects in images, it is not designed for Reinforcement Learning or human feedback integration. It’s more suited for pre-trained model use or training custom labels with predefined datasets.
+
+The option that says: Amazon SageMaker built-in algorithms is incorrect because SageMaker built-in algorithms are for model training, not data labeling. These algorithms don’t directly address the labeling task.
+
+The option that says: Amazon Comprehend is incorrect because it is only for natural language processing (NLP) tasks, not image labeling.
+
+----------------
+
+A Foundation Model is a powerful AI model trained on a huge and diverse set of data. It has many parameters that allow it to handle different tasks, like generating text, creating images, or converting input data into a format that can be easily used for analysis (embeddings). These models are very flexible and can be adapted to solve a wide range of problems with minimal effort. Amazon Bedrock offers access to these Foundation Models, making it easier for users to harness advanced AI capabilities for their specific needs.
+
+<img width="1881" height="710" alt="image" src="https://github.com/user-attachments/assets/a4aa59cd-4d33-4b98-bcd1-5aec1ac8cd13" />
+
+Amazon Bedrock enables teams to build and scale generative AI applications quickly by providing access to pre-trained foundation models (FMs). To begin using Amazon Bedrock, the first step is to pick a suitable foundation model that best fits the use case, such as generating personalized email content. This ensures that the model’s capabilities align with the desired output and customer segment needs.
+
+Hence, the correct answer is: Pick a suitable foundation model (FM).
+
+The option that says: Choose the input token limit for content generation is incorrect because this is a later step in the process, before setting parameters like token limits, it’s crucial to choose a foundation model that aligns with the use case. Amazon Bedrock primarily provides various models tailored for different tasks, and selecting the appropriate model is the first step to ensure proper content generation.
+
+The option that says: Configure the output format for the generated content is incorrect because this comes only after ensuring that the foundation model generates content that meets the marketing team’s needs.
+
+The option that says: Set up API credentials for access is incorrect because while setting up API credentials is necessary for using Amazon Bedrock, it is not the first step. The primary step is to select a foundation model that will drive the content generation process, as the model must be suitable for the specific use case before any API interaction.
+
+-----------
+
+RLHF (Reinforcement Learning from Human Feedback) is a specific technique used in training AI systems to appear more human, alongside other techniques such as supervised and unsupervised learning. First, the model’s responses are compared to the responses of a human. Then, a human assesses the quality of different responses from the machine, scoring which responses sound more human. The score can be based on innately human qualities, such as friendliness, the right degree of contextualization, and mood.
+
+<img width="1049" height="788" alt="image" src="https://github.com/user-attachments/assets/ef21845a-65c8-48c1-9091-3b8ba1568ab3" />
+
+One of the key steps in the RLHF approach is creating a reward model. The reward model is trained on human feedback to learn to predict the quality or appropriateness of the language model’s outputs. Another key step in the RLHF approach is fine-tuning the language model using the reward model and reinforcement learning techniques.
+
+Hence, the correct answers are:
+
+– Creating a reward model
+
+– Supervised fine-tuning of the language model
+
+The option that says: Supervised fine-tuning of the regression model is incorrect. Reinforcement Learning from Human Feedback (RLHF) is a technique used for training large language models, not regression models. Regression models are typically used for predicting numerical values, while language models are used for generating text.
+
+The option that says: Evaluating the model’s performance using perplexity score is incorrect. Perplexity is a metric used to evaluate the performance of language models, but it is not a part of the RLHF approach. Perplexity typically measures how well a language model predicts the next word in a sequence but does not incorporate human feedback.
+
+The option that says: Unsupervised pre-training of the language model is incorrect. RLHF is a technique used to fine-tune an already pre-trained language model using human feedback. The pre-training of the language model itself is typically done in an unsupervised manner on a large corpus of text data, but this step is not a part of the RLHF approach.
+
+------------
+
+BERTScore is a tool that compares how similar generated text is to a reference by understanding the context of words leveraging BERT (Bidirectional Encoder Representations from Transformers) embeddings. This makes it better at judging the quality of text, especially for tasks like evaluating chatbots. It helps determine how closely a chatbot’s responses match what a human might say or respond.
+
+<img width="1600" height="896" alt="image" src="https://github.com/user-attachments/assets/c80cfba1-a127-4177-bd15-e8d2372a348c" />
+
+In the scenario, the retail organization aims to ensure the chatbot’s responses closely resemble those of subject matter experts, BERTScore is the most appropriate metric because it directly measures the similarity between the chatbot’s responses and expert answers, detecting the differences in language that matter in customer interactions.
+
+Hence, the correct answer is: BERTScore.
+
+The option that says: Mean squared error (MSE) is incorrect because this option is primarily used in regression tasks to measure the difference between predicted and actual numerical values. It is not designed to evaluate text similarity.
+
+The option that says: ROUGE-N is incorrect because it only focuses on the overlap of n-grams (sequences of words) between generated and reference text, which works well for summarization tasks but does not capture the deeper semantic meaning of the text, making it less effective for evaluating the similarity of chatbot responses.
+
+The option that says: Metric for Evaluation of Translation with Explicit Ordering (METEOR) is incorrect. While it also evaluates text similarity, it does so based on precision and recall metrics, which do not leverage deep contextual embeddings like BERTScore. This makes Meteor less precise in capturing the nuanced similarities in chatbot responses compared to expert answers.
+
+--------------
+
+Amazon SageMaker Model Registry is designed specifically to manage machine learning models. If you choose to store your model artifacts (model framework files, container image) in AWS (Amazon ECR), or outside of AWS in any third-party Docker repository, you can track them all in the Amazon SageMaker Model Registry.
+
+Amazon SageMaker Model Registry provides the following capabilities:
+
+– Cataloging models for production
+
+– Managing model versions
+
+– Associating metadata, such as training metrics, with a model
+
+– Viewing information from Amazon SageMaker Model Cards in your registered models
+
+– Managing the approval status of a model
+
+– Deploying models to production
+
+– Automating model deployment with CI/CD
+
+– Sharing models with other users
+
+<img width="2452" height="1454" alt="image" src="https://github.com/user-attachments/assets/019934ad-162c-4def-9f7f-f3c585af26ed" />
+
+Hence, the correct answer is: Amazon SageMaker Model Registry.
+
+The option that says: AWS Glue is incorrect because it is primarily used for data preparation and transformation. It’s not specifically designed for model cataloging, version management, or associating metadata with machine learning models.
+
+The option that says: Amazon Elastic Container Registry is incorrect. ECR is a service that stores and manages Docker container images. While it’s essential for deploying containerized applications, it’s not typically designed for managing machine learning models.
+
+The option that says: AWS Elastic Beanstalk is incorrect because it is a platform-as-a-service (PaaS) offering for deploying and managing web applications. It’s not focused on model management or cataloging.
+
+
+------------------
+
+
+
 
 
 
